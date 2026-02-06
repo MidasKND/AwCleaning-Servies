@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&W Cleaning Services | Commercial Cleaning Atlanta</title>
+    <meta name="description"
+        content="Trusted commercial cleaning for property management firms in Atlanta. AI-forward, transparent, and reliable.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="assets/logo.svg" alt="A&W Cleaning Services">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#quote">Get Quote</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button id="portal-login-btn" class="btn btn-outline">Cleaner Portal <i
+                            class="fa-solid fa-right-to-bracket"></i></button>
+                    <a href="#quote" class="btn btn-primary">Free Estimate</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero no-image">
+        <!-- Background will be added via CSS or JS dynamically if needed -->
+        <div class="hero-content text-center">
+            <h1>Trusted Commercial Cleaning<br>Since 2003</h1>
+            <p>The AI-forward partner for Atlanta's Top Property Managers.<br>Data-driven reliability, zero bias.</p>
+            <a href="#quote" class="btn btn-primary">Request Proposal</a>
+        </div>
+    </section>
+
+    <!-- Credibility Banner -->
+    <div class="trusted-by">
+        <div class="container">
+            <p style="text-align: center; margin-bottom: 1rem; font-weight: 500;">Trusted by Premier Property Management
+                Firms</p>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Placeholders for PM names -->
+                    <div class="pm-logo">Beacon Management</div>
+                    <div class="pm-logo">FirstService Residential</div>
+                    <div class="pm-logo">Community Management Associates</div>
+                    <div class="pm-logo">Heritage Property Management</div>
+                    <div class="pm-logo">Access Management</div>
+                    <div class="pm-logo">Beacon Management</div> <!-- Duplicate for scroll -->
+                    <div class="pm-logo">FirstService Residential</div>
+                    <div class="pm-logo">Community Management Associates</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Proposition -->
+    <section id="values" class="values">
+        <div class="container">
+            <h2 class="section-title">Why <span>A&W</span>?</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>AI-Forward Reporting</h3>
+                    <p>No more guessing. We use real-time data and AI verification to ensure every corner is cleaned to
+                        spec. Transparent, digital proof of service.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h3>20+ Years Trust</h3>
+                    <p>A household name in Atlanta. We understand the unique needs of HOAs, Club Houses, and Commercial
+                        properties.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <h3>Satisfaction Guaranteed</h3>
+                    <p>Our reputation is our bond. Detailed inspections and instant communication loops mean issues are
+                        solved before you see them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="values" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">Our <span>Specialties</span></h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Commercial Buildings</h3>
+                </div>
+                <div class="value-card">
+                    <h3>Club Houses</h3>
+                </div>
+                <div class="value-card">
+                    <h3>Fitness Centers</h3>
+                </div>
+                <div class="value-card">
+                    <h3>Offices</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Quote Form -->
+    <section id="quote" class="quote-section">
+        <div class="container">
+            <h2 class="section-title">Request a <span>Proposal</span></h2>
+            <form id="quote-form" class="quote-form">
+                <div class="form-group">
+                    <label for="pm-name">Property Management Firm / HOA Name</label>
+                    <input type="text" id="pm-name" required placeholder="e.g. Beacon Management">
+                </div>
+                <div class="form-group">
+                    <label for="contact-name">Contact Person</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="property-type">Property Type</label>
+                    <select id="property-type">
+                        <option value="commercial">Commercial Building</option>
+                        <option value="clubhouse">Club House</option>
+                        <option value="fitness">Fitness Center</option>
+                        <option value="office">Office Space</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Estimated Monthly Budget</label>
+                    <input type="text" id="budget" placeholder="$">
+                </div>
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" rows="4" placeholder="Any specific requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Cleaner Portal Modal (Hidden) -->
+    <div id="cleaner-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+
+            <!-- Login State -->
+            <div id="login-view">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Cleaner Check-In</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Cleaner ID</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+            </div>
+
+            <!-- Dashboard State (Hidden initially) -->
+            <div id="dashboard-view" style="display: none;">
+                <h3 style="text-align: center; color: var(--primary-green);">Welcome, Maria</h3>
+                <p style="text-align: center; margin-bottom: 1rem;">Checked in at: <strong>Riverside Club House</strong>
+                </p>
+
+                <div class="upload-section"
+                    style="border: 2px dashed #ddd; padding: 2rem; text-align: center; margin-bottom: 1rem; border-radius: 8px;">
+                    <i class="fa-solid fa-camera" style="font-size: 2rem; color: #ccc; margin-bottom: 0.5rem;"></i>
+                    <p>Upload Proof of Visit</p>
+                    <input type="file" id="proof-upload" style="margin-top: 0.5rem;">
+                </div>
+
+                <button id="submit-proof" class="btn btn-primary" style="width: 100%;">Complete Visit</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="background: #1a1a1a; color: white; padding: 2rem 0; margin-top: auto;">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 A&W Cleaning Services. All Rights Reserved.</p>
+            <p style="font-size: 0.9rem; color: #888; margin-top: 0.5rem;">Serving Atlanta & Surrounding Areas</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="color: white; margin: 0 10px;">678-472-8019</a> |
+                <a href="mailto:angelalwilliams@comcast.net"
+                    style="color: white; margin: 0 10px;">angelalwilliams@comcast.net</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
