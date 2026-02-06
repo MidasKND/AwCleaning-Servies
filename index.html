@@ -26,6 +26,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
+                    <!-- Adjusted size in CSS -->
                     <img src="assets/logo.svg" alt="A&W Cleaning Services">
                 </div>
                 <ul class="nav-links">
@@ -43,29 +44,37 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero no-image">
-        <!-- Background will be added via CSS or JS dynamically if needed -->
-        <div class="hero-content text-center">
-            <h1>Trusted Commercial Cleaning<br>Since 2003</h1>
-            <p>The AI-forward partner for Atlanta's Top Property Managers.<br>Data-driven reliability, zero bias.</p>
-            <a href="#quote" class="btn btn-primary">Request Proposal</a>
+    <section id="home" class="hero">
+        <div class="container" style="display: flex; justify-content: flex-start; width: 100%;">
+            <div class="hero-content">
+                <h1>TRUSTED.<br>PROFESSIONAL.<br>GUARANTEED.</h1>
+                <p>The AI-forward partner for Atlanta's Top Property Managers for over 20 years.</p>
+                <a href="#quote" class="btn btn-primary">Request Proposal</a>
+            </div>
         </div>
     </section>
 
-    <!-- Credibility Banner -->
+    <!-- Satisfaction Guaranteed Banner (Bold Strip) -->
+    <div class="guarantee-banner">
+        <div class="container">
+            <i class="fa-solid fa-check-circle"></i> Satisfaction Guaranteed!
+        </div>
+    </div>
+
+    <!-- Credibility Banner (Below Guarantee) -->
     <div class="trusted-by">
         <div class="container">
-            <p style="text-align: center; margin-bottom: 1rem; font-weight: 500;">Trusted by Premier Property Management
-                Firms</p>
+            <p
+                style="text-align: center; margin-bottom: 2rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em;">
+                Trusted Partners</p>
             <div class="carousel-container">
                 <div class="carousel-track">
-                    <!-- Placeholders for PM names -->
                     <div class="pm-logo">Beacon Management</div>
                     <div class="pm-logo">FirstService Residential</div>
                     <div class="pm-logo">Community Management Associates</div>
                     <div class="pm-logo">Heritage Property Management</div>
                     <div class="pm-logo">Access Management</div>
-                    <div class="pm-logo">Beacon Management</div> <!-- Duplicate for scroll -->
+                    <div class="pm-logo">Beacon Management</div>
                     <div class="pm-logo">FirstService Residential</div>
                     <div class="pm-logo">Community Management Associates</div>
                 </div>
@@ -73,49 +82,39 @@
         </div>
     </div>
 
+    <!-- Services - Flyer Style (Slanted Stack) -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="service-stack">
+                <div class="service-banner">Commercial Buildings</div>
+                <div class="service-banner">Offices</div>
+                <div class="service-banner">Homes</div>
+                <div class="service-banner">Club Houses</div>
+                <div class="service-banner">Fitness Centers</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Value Proposition -->
-    <section id="values" class="values">
+    <section id="values" class="skewed-bg">
         <div class="container">
             <h2 class="section-title">Why <span>A&W</span>?</h2>
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h3>AI-Forward Reporting</h3>
-                    <p>No more guessing. We use real-time data and AI verification to ensure every corner is cleaned to
-                        spec. Transparent, digital proof of service.</p>
+                    <p>Real-time data and AI verification ensure every corner is cleaned to spec. Transparent, digital
+                        proof of service.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
                     <h3>20+ Years Trust</h3>
-                    <p>A household name in Atlanta. We understand the unique needs of HOAs, Club Houses, and Commercial
-                        properties.</p>
+                    <p>A household name in Atlanta for HOAs and Commercial properties.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon"><i class="fa-solid fa-check-double"></i></div>
-                    <h3>Satisfaction Guaranteed</h3>
-                    <p>Our reputation is our bond. Detailed inspections and instant communication loops mean issues are
-                        solved before you see them.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="values" style="background-color: var(--light-bg);">
-        <div class="container">
-            <h2 class="section-title">Our <span>Specialties</span></h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <h3>Commercial Buildings</h3>
-                </div>
-                <div class="value-card">
-                    <h3>Club Houses</h3>
-                </div>
-                <div class="value-card">
-                    <h3>Fitness Centers</h3>
-                </div>
-                <div class="value-card">
-                    <h3>Offices</h3>
+                    <h3>Quality Assurance</h3>
+                    <p>Instant communication loops mean issues are solved before you see them.</p>
                 </div>
             </div>
         </div>
