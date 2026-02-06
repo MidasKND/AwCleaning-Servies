@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Hero Carousel Logic ---
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        setInterval(() => {
+            // Remove active from current
+            slides[currentSlide].classList.remove('active');
+
+            // Move to next
+            currentSlide = (currentSlide + 1) % totalSlides;
+
+            // Add active to next
+            slides[currentSlide].classList.add('active');
+        }, 5000); // 5 seconds per slide
+    }
+
     // --- Quote Form Handling ---
     const quoteForm = document.getElementById('quote-form');
     if (quoteForm) {

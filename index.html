@@ -25,48 +25,64 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <!-- Adjusted size in CSS -->
+                <a href="index.html" class="logo-container">
                     <img src="assets/logo.svg" alt="A&W Cleaning Services">
-                </div>
+                    <span class="business-name">A&W<br>Cleaning<br>Services</span>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#quote">Get Quote</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="portal.html">Client Portal</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button id="portal-login-btn" class="btn btn-outline">Cleaner Portal <i
-                            class="fa-solid fa-right-to-bracket"></i></button>
-                    <a href="#quote" class="btn btn-primary">Free Estimate</a>
+                    <a href="portal.html" class="btn btn-outline"
+                        style="border-width: 2px; padding: 10px 20px; font-size: 0.9em;">Client Portal <i
+                            class="fa-solid fa-right-to-bracket"></i></a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Carousel -->
     <section id="home" class="hero">
-        <div class="container" style="display: flex; justify-content: flex-start; width: 100%;">
-            <div class="hero-content">
-                <h1>TRUSTED.<br>PROFESSIONAL.<br>GUARANTEED.</h1>
-                <p>The AI-forward partner for Atlanta's Top Property Managers for over 20 years.</p>
-                <a href="#quote" class="btn btn-primary">Request Proposal</a>
-            </div>
+        <!-- Background Slides -->
+        <div class="hero-slide active"
+            style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');">
+        </div>
+        <div class="hero-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80');">
+        </div>
+        <div class="hero-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80');">
+        </div>
+        <div class="hero-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80');">
+        </div>
+
+        <!-- Centered Overlay -->
+        <div class="hero-overlay">
+            <img src="assets/logo.svg" alt="A&W Logo" class="hero-logo-center">
+            <h1>PREMIUM COMMERCIAL CLEANING</h1>
+            <p>Commercial Buildings • Club Houses • Offices • Fitness Centers</p>
+            <a href="services.html" class="btn btn-primary">Our Services</a>
+            <a href="#quote" class="btn btn-outline" style="color: white; border-color: white; margin-left: 1rem;">Get A
+                Quote</a>
         </div>
     </section>
 
-    <!-- Satisfaction Guaranteed Banner (Bold Strip) -->
+    <!-- Satisfaction Guaranteed Banner -->
     <div class="guarantee-banner">
         <div class="container">
             <i class="fa-solid fa-check-circle"></i> Satisfaction Guaranteed!
         </div>
     </div>
 
-    <!-- Credibility Banner (Below Guarantee) -->
+    <!-- Credibility -->
     <div class="trusted-by">
         <div class="container">
-            <p
-                style="text-align: center; margin-bottom: 2rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em;">
-                Trusted Partners</p>
+            <!-- <p class="text-center" style="margin-bottom: 2rem; color: #666; font-weight: bold;">TRUSTED PARTNERS</p> -->
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="pm-logo">Beacon Management</div>
@@ -82,45 +98,33 @@
         </div>
     </div>
 
-    <!-- Services - Flyer Style (Slanted Stack) -->
-    <section id="services" class="services-section">
+    <!-- Quick Services Preview (Slanted Style kept but compacted) -->
+    <section class="services-section">
         <div class="container">
             <div class="service-stack">
-                <div class="service-banner">Commercial Buildings</div>
-                <div class="service-banner">Offices</div>
-                <div class="service-banner">Homes</div>
-                <div class="service-banner">Club Houses</div>
-                <div class="service-banner">Fitness Centers</div>
+                <a href="services.html" class="service-banner" style="text-decoration: none; display: block;">Commercial
+                    Buildings</a>
+                <a href="services.html" class="service-banner"
+                    style="text-decoration: none; display: block;">Offices</a>
+                <a href="services.html" class="service-banner" style="text-decoration: none; display: block;">Homes</a>
+                <a href="services.html" class="service-banner" style="text-decoration: none; display: block;">Club
+                    Houses</a>
+                <a href="services.html" class="service-banner" style="text-decoration: none; display: block;">Fitness
+                    Centers</a>
+            </div>
+            <div style="margin-top: 3rem; text-align: left; max-width: 800px;">
+                <h3 style="color: white; font-size: 2rem; margin-bottom: 1rem;">MORE THAN JUST CLEAN.</h3>
+                <p style="color: #e0f2f1; font-size: 1.1rem; margin-bottom: 2rem;">
+                    We are an AI-forward cleaning partner. By leveraging data-driven reporting, we remove bias and
+                    ensure
+                    consistent, high-quality results for property managers across Atlanta.
+                </p>
+                <a href="about.html" class="btn btn-primary">Learn About Our Tech</a>
             </div>
         </div>
     </section>
 
-    <!-- Value Proposition -->
-    <section id="values" class="skewed-bg">
-        <div class="container">
-            <h2 class="section-title">Why <span>A&W</span>?</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>AI-Forward Reporting</h3>
-                    <p>Real-time data and AI verification ensure every corner is cleaned to spec. Transparent, digital
-                        proof of service.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <h3>20+ Years Trust</h3>
-                    <p>A household name in Atlanta for HOAs and Commercial properties.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-check-double"></i></div>
-                    <h3>Quality Assurance</h3>
-                    <p>Instant communication loops mean issues are solved before you see them.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- B2B Quote Form -->
+    <!-- B2B Quote Form (Keep on home) -->
     <section id="quote" class="quote-section">
         <div class="container">
             <h2 class="section-title">Request a <span>Proposal</span></h2>
@@ -151,13 +155,44 @@
                     <input type="text" id="budget" placeholder="$">
                 </div>
                 <div class="form-group">
-                    <label for="details">Additional Details</label>
-                    <textarea id="details" rows="4" placeholder="Any specific requirements..."></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
             </form>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/logo.svg" style="height: 50px; margin-bottom: 1rem;">
+                    <p style="color: #9ca3af;">Trusted. Professional. Guaranteed.</p>
+                </div>
+                <div class="footer-col footer">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="news.html">Industry News</a>
+                    <a href="portal.html">Client Portal</a>
+                </div>
+                <div class="footer-col footer">
+                    <h4>Support</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact Support</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-col footer">
+                    <h4>Contact</h4>
+                    <a href="tel:6784728019">678-472-8019</a>
+                    <a href="mailto:angelalwilliams@comcast.net">angelalwilliams@comcast.net</a>
+                </div>
+            </div>
+            <div class="text-center" style="border-top: 1px solid #374151; padding-top: 2rem; color: #6b7280;">
+                &copy; 2026 A&W Cleaning Services. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
 
     <!-- Cleaner Portal Modal (Hidden) -->
     <div id="cleaner-modal" class="modal">

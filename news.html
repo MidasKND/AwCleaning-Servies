@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry News | A&W Cleaning Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header (Shared) -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-container">
+                    <img src="assets/logo.svg" alt="A&W Cleaning Services">
+                    <span class="business-name">A&W<br>Cleaning<br>Services</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="news.html" class="active">News</a></li>
+                    <li><a href="portal.html">Client Portal</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="portal.html" class="btn btn-outline"
+                        style="border-width: 2px; padding: 10px 20px; font-size: 0.9em;">Client Portal <i
+                            class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div style="height: 100px;"></div>
+
+    <section class="skewed-bg">
+        <div class="container">
+            <h1 class="section-title">Industry <span>Insights</span></h1>
+            <p class="text-center" style="margin-bottom: 3rem; font-size: 1.1rem;">Latest updates from the Property
+                Management world (CMA).</p>
+
+            <div id="news-container" class="news-grid">
+                <!-- Fallback content if API fails -->
+                <div class="news-card">
+                    <h3>Loading Industry News...</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple RSS Fetcher
+        document.addEventListener('DOMContentLoaded', () => {
+            // Using rss2json to fetch CMA (Community Management Associates) or similar feed
+            // Fallback to a generic property management feed if specific one isn't available
+            const feedUrl = 'https://www.hoaleader.com/feed'; // Example feed
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('news-container');
+                    if (data.status === 'ok') {
+                        container.innerHTML = '';
+                        data.items.slice(0, 6).forEach(item => {
+                            const card = document.createElement('div');
+                            card.className = 'news-card';
+                            card.innerHTML = `
+                                <h3><a href="${item.link}" target="_blank" style="text-decoration: none; color: inherit;">${item.title}</a></h3>
+                                <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">${new Date(item.pubDate).toLocaleDateString()}</p>
+                                <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</p>
+                                <a href="${item.link}" target="_blank" style="color: var(--primary-teal); font-weight: bold; margin-top: 1rem; display: block;">Read More &rarr;</a>
+                            `;
+                            container.appendChild(card);
+                        });
+                    } else {
+                        container.innerHTML = '<p class="text-center">Unable to load news feed at this time.</p>';
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching news:', err);
+                    document.getElementById('news-container').innerHTML = '<p class="text-center">Latest news unavailable.</p>';
+                });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
