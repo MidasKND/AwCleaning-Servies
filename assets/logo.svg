@@ -1,25 +1,52 @@
-<svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#2A7F85;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6CC24A;stop-opacity:1" />
-    </linearGradient>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#8ecde2;stop-opacity:1" /> <!-- Light Blue center -->
+      <stop offset="100%" style="stop-color:#5390a8;stop-opacity:1" /> <!-- Darker Blue/Teal edge -->
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <!-- Background Circle (Optional, stylistic) -->
-  <circle cx="150" cy="75" r="70" stroke="url(#grad1)" stroke-width="4" fill="white" fill-opacity="0.9" />
   
-  <!-- "A" -->
-  <text x="80" y="100" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#2A7F85">A</text>
+  <!-- Background Circle -->
+  <circle cx="150" cy="150" r="140" fill="url(#bgGradient)" stroke="white" stroke-width="8" />
   
-  <!-- "&" -->
-  <text x="135" y="100" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#6CC24A">&amp;</text>
-  
-  <!-- "W" -->
-  <text x="170" y="100" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#2A7F85">W</text>
-  
-  <!-- Subtitle -->
-  <text x="150" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2A7F85" text-anchor="middle" letter-spacing="2">CLEANING SERVICES</text>
-  
-  <!-- Broom Icon / Swoosh -->
-  <path d="M 60 110 Q 150 145 240 110" stroke="#6CC24A" stroke-width="5" fill="none" />
+  <!-- Main Group centered -->
+  <g transform="translate(30, 40)">
+      
+      <!-- The "A" - Script Style (Approximated with paths for better fidelity than standard fonts) -->
+      <!-- A large swooping Calligraphy A in Dark Teal #1f4e5f -->
+      <path d="M 60 120 Q 50 180 80 180 Q 90 180 95 160 L 110 50 Q 115 20 90 20 Q 60 20 60 60 L 50 140 Q 40 190 10 190 Q -10 190 -10 160" 
+            fill="none" stroke="#1f4e66" stroke-width="8" stroke-linecap="round" />
+      <path d="M 55 110 L 120 110" stroke="#1f4e66" stroke-width="6" /> <!-- Crossbar -->
+
+      <!-- The "W" - Sharp, Green #4db848, Interlaced -->
+      <text x="110" y="140" font-family="Arial, sans-serif" font-size="110" font-weight="bold" fill="#5cbd3a" style="font-style: italic;">W</text>
+      
+      <!-- The "&" - Small, dark blue -->
+      <text x="100" y="100" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#1f4e66">&amp;</text>
+
+      <!-- Swoosh (Broom effect) -->
+      <path d="M 20 150 Q 100 130 180 150" stroke="#1f4e66" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Broom bristles head approximation -->
+      <path d="M 15 150 L 5 170 L 35 175 L 25 152" fill="#1f4e66" />
+
+      <!-- Text "CLEANING" - Block, Dark Blue -->
+      <text x="130" y="185" font-family="'Outfit', 'Arial', sans-serif" font-size="24" font-weight="bold" fill="#1f4e66" text-anchor="middle" letter-spacing="1">CLEANING</text>
+      
+      <!-- Text "SERVICES" - Block, Green -->
+      <text x="180" y="205" font-family="'Outfit', 'Arial', sans-serif" font-size="16" font-weight="bold" fill="#5cbd3a" text-anchor="middle" letter-spacing="2">SERVICES</text>
+
+      <!-- Bubbles - Green Outlines -->
+      <circle cx="210" cy="110" r="15" fill="none" stroke="#5cbd3a" stroke-width="2" />
+      <circle cx="215" cy="115" r="4" fill="white" fill-opacity="0.5" /> <!-- Shine -->
+      
+      <circle cx="235" cy="90" r="10" fill="none" stroke="#5cbd3a" stroke-width="2" />
+      <circle cx="230" cy="130" r="8" fill="none" stroke="#5cbd3a" stroke-width="2" />
+  </g>
 </svg>
