@@ -57,38 +57,107 @@
     </section>
 
     <script>
-        // Simple RSS Fetcher
         document.addEventListener('DOMContentLoaded', () => {
-            // Using rss2json to fetch CMA (Community Management Associates) or similar feed
-            // Fallback to a generic property management feed if specific one isn't available
-            const feedUrl = 'https://www.hoaleader.com/feed'; // Example feed
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+            const container = document.getElementById('news-container');
+            
+            // List of feeds to fetch (Property Management specific)
+            // Using rss2json service which converts RSS XML to JSON
+            const feeds = [
+                'https://www.propertymanagementinsider.com/feed',
+                'https://www.nar.realtor/newsroom/rss' 
+            ];
 
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('news-container');
-                    if (data.status === 'ok') {
-                        container.innerHTML = '';
-                        data.items.slice(0, 6).forEach(item => {
-                            const card = document.createElement('div');
-                            card.className = 'news-card';
-                            card.innerHTML = `
-                                <h3><a href="${item.link}" target="_blank" style="text-decoration: none; color: inherit;">${item.title}</a></h3>
-                                <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">${new Date(item.pubDate).toLocaleDateString()}</p>
-                                <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</p>
-                                <a href="${item.link}" target="_blank" style="color: var(--primary-teal); font-weight: bold; margin-top: 1rem; display: block;">Read More &rarr;</a>
-                            `;
-                            container.appendChild(card);
-                        });
-                    } else {
-                        container.innerHTML = '<p class="text-center">Unable to load news feed at this time.</p>';
+            // Function to fetch a single feed
+            const fetchFeed = (url) => {
+                const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+                return fetch(api).then(res => res.json());
+            };
+
+            // Fetch all feeds in parallel
+            Promise.all(feeds.map(fetchFeed))
+                .then(responses => {
+                    let allItems = [];
+                    let successCount = 0;
+
+                    responses.forEach(data => {
+                        if (data.status === 'ok') {
+                            successCount++;
+                            // Add source info to each item
+                            const itemsWithSource = data.items.map(item => ({
+                                ...item,
+                                source: data.feed.title || 'Industry News'
+                            }));
+                            allItems = allItems.concat(itemsWithSource);
+                        }
+                    });
+
+                    if (successCount === 0) {
+                        throw new Error('All feeds failed to load');
                     }
+
+                    // Sort by publication date (newest first)
+                    allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                    // Display top 9 items
+                    renderNews(allItems.slice(0, 9));
                 })
                 .catch(err => {
                     console.error('Error fetching news:', err);
-                    document.getElementById('news-container').innerHTML = '<p class="text-center">Latest news unavailable.</p>';
+                    container.innerHTML = `
+                        <div class="news-error" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <i class="fa-solid fa-newspaper" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                            <h3>News Feed Unavailable</h3>
+                            <p>We're currently unable to load the latest industry updates. Please check back later.</p>
+                        </div>
+                    `;
                 });
+
+            function renderNews(items) {
+                container.innerHTML = '';
+                items.forEach(item => {
+                    // Create a fallback for description if it's empty or too short
+                    let desc = item.description || '';
+                    // Strip HTML tags
+                    let cleanDesc = desc.replace(/<[^>]*>?/gm, '');
+                    // Truncate
+                    if (cleanDesc.length > 120) {
+                        cleanDesc = cleanDesc.substring(0, 120) + '...';
+                    }
+
+                    // Attempt to find an image in content if thumbnail is missing
+                    let imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+                    let imageHtml = '';
+                    if (item.thumbnail) {
+                        imageHtml = `<img src="${item.thumbnail}" alt="${item.title}" style="width:100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0;">`;
+                    } else if (imgMatch) {
+                         imageHtml = `<img src="${imgMatch[1]}" alt="${item.title}" style="width:100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0;">`;
+                    } else {
+                        // Fallback image placeholder or pattern
+                        imageHtml = `<div style="width:100%; height: 200px; background: linear-gradient(135deg, var(--primary-teal), var(--primary-blue)); border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><i class="fa-regular fa-newspaper" style="color: white; font-size: 3rem;"></i></div>`;
+                    }
+                    
+                    const date = new Date(item.pubDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+
+                    const card = document.createElement('div');
+                    card.className = 'news-card';
+                    // Inline styles for the card to ensure it looks good even if CSS isn't perfectly matched yet
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    card.style.height = '100%';
+                    
+                    card.innerHTML = `
+                        ${imageHtml}
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <span style="font-size: 0.8rem; color: var(--primary-teal); font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem;">${item.source}</span>
+                            <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem; line-height: 1.4;"><a href="${item.link}" target="_blank" style="text-decoration: none; color: inherit;">${item.title}</a></h3>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">${date}</p>
+                            <p style="flex-grow: 1; margin-bottom: 1.5rem;">${cleanDesc}</p>
+                            <a href="${item.link}" target="_blank" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; display: inline-flex; align-items: center;">Read Full Article <i class="fa-solid fa-arrow-right" style="margin-left: 5px; font-size: 0.8em;"></i></a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
         });
     </script>
     <script src="script.js"></script>
