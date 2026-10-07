@@ -161,8 +161,10 @@ nav {
     text-decoration: none;
 }
 
-.logo img {
-    height: 60px;
+.logo-container img {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
 }
 
 .business-name {
