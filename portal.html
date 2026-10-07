@@ -40,49 +40,202 @@
 
     <div style="height: 100px;"></div>
 
-    <section
-        style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80') center/cover;">
+    <section style="min-height: 85vh; padding: 4rem 1rem; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80') center/cover;">
 
-        <div class="container" style="width: 100%; max-width: 900px;">
-            <div
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-lg);">
+        <div class="container">
+            <div class="portal-card-wrap">
+                <!-- Role Navigation Tabs -->
+                <div class="portal-tabs-nav">
+                    <button class="portal-tab-btn active" data-tab="client-panel">
+                        <i class="fa-solid fa-building-user"></i> Client Login
+                    </button>
+                    <button class="portal-tab-btn" data-tab="staff-panel">
+                        <i class="fa-solid fa-clipboard-user"></i> Staff / Employee
+                    </button>
+                    <button class="portal-tab-btn" data-tab="admin-panel">
+                        <i class="fa-solid fa-user-shield"></i> Admin Portal
+                    </button>
+                </div>
 
-                <!-- Client Login -->
-                <div style="padding: 3rem;">
-                    <h2 class="text-center" style="margin-bottom: 2rem;">Client Login</h2>
-                    <form>
-                        <div class="form-group">
-                            <label>Email / Username</label>
-                            <input type="text" placeholder="property.manager@company.com">
+                <!-- 1. CLIENT LOGIN PANEL -->
+                <div id="client-panel" class="portal-role-panel active">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                        <div>
+                            <span class="role-badge-tag badge-client"><i class="fa-solid fa-building"></i> Property Managers & HOAs</span>
+                            <h2 style="margin-bottom: 1rem; color: var(--primary-teal);">Client Portal Access</h2>
+                            <p style="color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Log in to access your property inspection reports, pay invoices, submit work orders, and track active cleaning status.</p>
+
+                            <form id="client-login-form">
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-envelope"></i> Work Email / Account ID</label>
+                                    <input type="text" id="client-email" required placeholder="manager@beaconmanagement.com">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-lock"></i> Password</label>
+                                    <input type="password" id="client-pass" required placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 12px;">Sign In as Client</button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password">
+
+                        <div style="background: var(--light-bg); padding: 2rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-teal);"><i class="fa-solid fa-star" style="color: #f59e0b;"></i> Client Portal Features</h4>
+                            <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95rem; color: #475569;">
+                                <li><i class="fa-solid fa-circle-check" style="color: var(--primary-green);"></i> Real-Time Inspection Scores & Photos</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: var(--primary-green);"></i> Online Invoice Payment & PDF Downloads</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: var(--primary-green);"></i> Submit Custom Service & Quote Requests</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: var(--primary-green);"></i> 24/7 Account Manager Direct Contact</li>
+                            </ul>
+                            <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #cbd5e1; padding-top: 1.2rem;">
+                                <button id="demo-client-btn" class="btn btn-outline" style="width: 100%; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Quick Demo Client View</button>
+                            </div>
                         </div>
-                        <button class="btn btn-primary" style="width: 100%;">Sign In</button>
-                    </form>
-                    <div style="margin-top: 1.5rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
-                        <ul style="list-style: none; font-size: 0.9rem; color: #555;">
-                            <li><i class="fa-solid fa-check" style="color: var(--primary-green);"></i> Pay Invoices</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--primary-green);"></i> Request Service
-                            </li>
-                            <li><i class="fa-solid fa-check" style="color: var(--primary-green);"></i> View Inspection
-                                Reports</li>
-                        </ul>
+                    </div>
+
+                    <!-- Client Dashboard View (Hidden until login) -->
+                    <div id="client-dashboard-view" style="display: none; margin-top: 2rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <div>
+                                <h3 style="color: var(--primary-teal); margin-bottom: 0.2rem;">Welcome, Beacon Management</h3>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Account ID: #PM-88421 | Active Properties: 4</p>
+                            </div>
+                            <button class="logout-btn btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px;">Sign Out</button>
+                        </div>
+                        <div class="dashboard-stats-grid">
+                            <div class="stat-box">
+                                <h4>98.4%</h4>
+                                <p>Last Inspection Score</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>0</h4>
+                                <p>Open Work Orders</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>$0.00</h4>
+                                <p>Past Due Balance</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Cleaner Login (Side) -->
-                <div style="background: var(--light-bg); padding: 3rem; border-left: 2px solid #eee;">
-                    <h3 style="margin-bottom: 1.5rem;">Cleaner / Staff Access</h3>
-                    <p style="margin-bottom: 2rem; font-size: 0.9rem;">Staff members, please log in here to upload proof
-                        of service and check schedules.</p>
-                    <button id="portal-login-btn" class="btn btn-outline" style="width: 100%;">Staff Login</button>
+                <!-- 2. STAFF / EMPLOYEE LOGIN PANEL -->
+                <div id="staff-panel" class="portal-role-panel">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                        <div>
+                            <span class="role-badge-tag badge-staff"><i class="fa-solid fa-id-badge"></i> Field Staff & Cleaners</span>
+                            <h2 style="margin-bottom: 1rem; color: var(--primary-green);">Staff Check-In Portal</h2>
+                            <p style="color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Field staff and cleaning technicians: log in here to clock in, view daily property routes, and geotag proof-of-service photos.</p>
 
-                    <div style="margin-top: 3rem; text-align: center;">
-                        <h4>Need Help?</h4>
-                        <p>Contact support at <a
-                                href="mailto:support@awcleanservices.com">support@awcleanservices.com</a></p>
+                            <form id="staff-login-form">
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-user-tag"></i> Cleaner / Employee ID</label>
+                                    <input type="text" id="staff-id" required placeholder="CL-104">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-lock"></i> Passcode</label>
+                                    <input type="password" id="staff-pass" required placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 12px; background: var(--primary-green); border-color: var(--primary-green);">Cleaner Check-In</button>
+                            </form>
+                        </div>
+
+                        <div style="background: var(--light-bg); padding: 2rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-green);"><i class="fa-solid fa-camera"></i> Staff Field Toolkit</h4>
+                            <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95rem; color: #475569;">
+                                <li><i class="fa-solid fa-location-dot" style="color: var(--primary-teal);"></i> Geotagged GPS Check-In & Check-Out</li>
+                                <li><i class="fa-solid fa-cloud-arrow-up" style="color: var(--primary-teal);"></i> Instant Photo Upload for Completed Tasks</li>
+                                <li><i class="fa-solid fa-map-location-dot" style="color: var(--primary-teal);"></i> Daily Property Route & Key Codes</li>
+                                <li><i class="fa-solid fa-triangle-exclamation" style="color: var(--primary-teal);"></i> Report Maintenance Issues On-Site</li>
+                            </ul>
+                            <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #cbd5e1; padding-top: 1.2rem;">
+                                <button id="demo-staff-btn" class="btn btn-outline" style="width: 100%; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Quick Demo Staff View (Maria)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staff Dashboard View (Hidden until login) -->
+                    <div id="staff-dashboard-view" style="display: none; margin-top: 2rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <div>
+                                <h3 style="color: var(--primary-green); margin-bottom: 0.2rem;">Welcome, Maria (Cleaner #CL-104)</h3>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Checked in at: <strong>Riverside Club House</strong> (Zone 2)</p>
+                            </div>
+                            <button class="logout-btn btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px;">Sign Out</button>
+                        </div>
+                        
+                        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 10px; border: 2px dashed #cbd5e1; text-align: center; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-camera" style="font-size: 2.5rem; color: var(--primary-teal); margin-bottom: 0.5rem;"></i>
+                            <h4 style="margin-bottom: 0.3rem;">Upload Proof of Visit</h4>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">Take a photo of completed clubhouse cleaning for geotag verification.</p>
+                            <input type="file" id="staff-proof-upload" style="margin-bottom: 1rem;">
+                            <br>
+                            <button id="staff-submit-proof" class="btn btn-primary" style="padding: 10px 24px;"><i class="fa-solid fa-paper-plane"></i> Submit Geotagged Visit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. ADMIN / OWNER LOGIN PANEL -->
+                <div id="admin-panel" class="portal-role-panel">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                        <div>
+                            <span class="role-badge-tag badge-admin"><i class="fa-solid fa-crown"></i> Management & Owner</span>
+                            <h2 style="margin-bottom: 1rem; color: #b45309;">Admin Command Center</h2>
+                            <p style="color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Owner & Operations Portal (Angela Williams): Manage clients, track staff locations, review AI quality audits, and oversee financials.</p>
+
+                            <form id="admin-login-form">
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-user-shield"></i> Admin Email</label>
+                                    <input type="email" id="admin-email" required placeholder="angelalwilliams@comcast.net">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa-solid fa-key"></i> Security Token / Password</label>
+                                    <input type="password" id="admin-pass" required placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 12px; background: #b45309; border-color: #b45309;">Sign In to Executive Dashboard</button>
+                            </form>
+                        </div>
+
+                        <div style="background: var(--light-bg); padding: 2rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+                            <h4 style="margin-bottom: 1rem; color: #b45309;"><i class="fa-solid fa-chart-line"></i> Operations Command Features</h4>
+                            <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95rem; color: #475569;">
+                                <li><i class="fa-solid fa-circle-check" style="color: #b45309;"></i> Live Field Staff GPS & Job Completion Map</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: #b45309;"></i> AI Quality Inspection Audits & Issue Logs</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: #b45309;"></i> B2B Quote Approvals & Client Contracts</li>
+                                <li><i class="fa-solid fa-circle-check" style="color: #b45309;"></i> Monthly Revenue & Payroll Control</li>
+                            </ul>
+                            <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #cbd5e1; padding-top: 1.2rem;">
+                                <button id="demo-admin-btn" class="btn btn-outline" style="width: 100%; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Quick Demo Admin View (Angela Williams)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard View (Hidden until login) -->
+                    <div id="admin-dashboard-view" style="display: none; margin-top: 2rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <div>
+                                <h3 style="color: #b45309; margin-bottom: 0.2rem;">Welcome, Angela Williams (Owner / Operations)</h3>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">A&W Executive Command Center | Atlanta Metro Region</p>
+                            </div>
+                            <button class="logout-btn btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px;">Sign Out</button>
+                        </div>
+                        <div class="dashboard-stats-grid">
+                            <div class="stat-box">
+                                <h4>18 / 24</h4>
+                                <p>Cleanings Completed Today</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>12</h4>
+                                <p>Active Field Staff</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>99.2%</h4>
+                                <p>Monthly Client Rating</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>$42,850</h4>
+                                <p>Monthly Recurring Revenue</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

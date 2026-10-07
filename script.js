@@ -49,76 +49,131 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Portal Modal Handling ---
-    const modal = document.getElementById('cleaner-modal');
-    const openBtn = document.getElementById('portal-login-btn');
-    const closeBtn = document.querySelector('.close-modal');
+    // --- Multi-Role Portal Tab Switching & Interactions ---
+    const tabBtns = document.querySelectorAll('.portal-tab-btn');
+    const rolePanels = document.querySelectorAll('.portal-role-panel');
 
-    if (openBtn && modal) {
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-tab');
+
+                // Update active tab button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update active panel
+                rolePanels.forEach(panel => {
+                    if (panel.id === targetTab) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            });
         });
     }
 
-    if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-    }
+    // --- Client Portal Login & Demo ---
+    const clientForm = document.getElementById('client-login-form');
+    const clientDash = document.getElementById('client-dashboard-view');
+    const demoClientBtn = document.getElementById('demo-client-btn');
 
-    // Close modal if clicking outside content
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
-
-    // --- Cleaner Login ---
-    const loginForm = document.getElementById('login-form');
-    const loginView = document.getElementById('login-view');
-    const dashboardView = document.getElementById('dashboard-view');
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
+    if (clientForm) {
+        clientForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Mock Login (Any input works)
-            const btn = loginForm.querySelector('button');
-            btn.innerText = 'Verifying...';
-
+            const btn = clientForm.querySelector('button[type="submit"]');
+            btn.innerText = 'Authenticating...';
             setTimeout(() => {
-                loginView.style.display = 'none';
-                dashboardView.style.display = 'block';
-            }, 1000);
+                clientDash.style.display = 'block';
+                btn.innerText = 'Sign In as Client';
+                clientDash.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
         });
     }
 
-    // --- Proof Upload ---
-    const submitProofBtn = document.getElementById('submit-proof');
-    if (submitProofBtn) {
-        submitProofBtn.addEventListener('click', () => {
-            const fileInput = document.getElementById('proof-upload');
-            if (fileInput.files.length === 0) {
-                alert('Please select a photo to upload.');
+    if (demoClientBtn) {
+        demoClientBtn.addEventListener('click', () => {
+            clientDash.style.display = 'block';
+            clientDash.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // --- Staff / Employee Portal Login & Demo ---
+    const staffForm = document.getElementById('staff-login-form');
+    const staffDash = document.getElementById('staff-dashboard-view');
+    const demoStaffBtn = document.getElementById('demo-staff-btn');
+
+    if (staffForm) {
+        staffForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = staffForm.querySelector('button[type="submit"]');
+            btn.innerText = 'Verifying Passcode...';
+            setTimeout(() => {
+                staffDash.style.display = 'block';
+                btn.innerText = 'Cleaner Check-In';
+                staffDash.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        });
+    }
+
+    if (demoStaffBtn) {
+        demoStaffBtn.addEventListener('click', () => {
+            staffDash.style.display = 'block';
+            staffDash.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // Staff Geotagged Visit Submit
+    const staffProofBtn = document.getElementById('staff-submit-proof');
+    if (staffProofBtn) {
+        staffProofBtn.addEventListener('click', () => {
+            const fileInput = document.getElementById('staff-proof-upload');
+            if (fileInput && fileInput.files.length === 0) {
+                alert('Please attach/select a photo of the completed work.');
                 return;
             }
-
-            // Mock Upload
-            submitProofBtn.innerText = 'Uploading...';
+            staffProofBtn.innerText = 'Geotagging & Uploading...';
             setTimeout(() => {
-                alert('Success! Proof of visit uploaded. Geotag: 33.7490° N, 84.3880° W');
-
-                // Reset State
-                modal.classList.remove('active');
-
-                // Reset views after a delay for next time (optional)
-                setTimeout(() => {
-                    dashboardView.style.display = 'none';
-                    loginView.style.display = 'block';
-                    loginForm.reset();
-                    submitProofBtn.innerText = 'Complete Visit';
-                }, 500);
-            }, 1500);
+                alert('Visit Submitted Successfully!\nGeotag: 33.7490° N, 84.3880° W\nTime: ' + new Date().toLocaleTimeString());
+                staffProofBtn.innerText = 'Submit Geotagged Visit';
+                if (fileInput) fileInput.value = '';
+            }, 1200);
         });
     }
+
+    // --- Admin / Owner Portal Login & Demo ---
+    const adminForm = document.getElementById('admin-login-form');
+    const adminDash = document.getElementById('admin-dashboard-view');
+    const demoAdminBtn = document.getElementById('demo-admin-btn');
+
+    if (adminForm) {
+        adminForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = adminForm.querySelector('button[type="submit"]');
+            btn.innerText = 'Authenticating Admin Key...';
+            setTimeout(() => {
+                adminDash.style.display = 'block';
+                btn.innerText = 'Sign In to Executive Dashboard';
+                adminDash.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        });
+    }
+
+    if (demoAdminBtn) {
+        demoAdminBtn.addEventListener('click', () => {
+            adminDash.style.display = 'block';
+            adminDash.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // Sign Out Buttons
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (clientDash) clientDash.style.display = 'none';
+            if (staffDash) staffDash.style.display = 'none';
+            if (adminDash) adminDash.style.display = 'none';
+            alert('Signed out successfully.');
+        });
+    });
 });
